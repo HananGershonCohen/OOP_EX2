@@ -27,17 +27,23 @@ void BookingForm::openConfirmationWindow() {
             sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (mousePos.x >= 280 && mousePos.x <= 400 && mousePos.y >= 300 && mousePos.y <= 345) {
+                if (mousePos.x >= 280 && mousePos.x <= 400 && mousePos.y >= 300 && mousePos.y <= 345) // press "CANCEL" 
+                {
+                    std::cout << __LINE__ << std::endl;
                     confirmWindow.close();
                 }
-                if (mousePos.x >= 100 && mousePos.x <= 220 && mousePos.y >= 300 && mousePos.y <= 345) {
+                if (mousePos.x >= 100 && mousePos.x <= 220 && mousePos.y >= 300 && mousePos.y <= 345) // press "APPROVE" 
+                {
+                    std::cout << __LINE__ << std::endl;
                     std::cout << formTitle << " Confirmed! Returning to main menu." << std::endl;
                     approved = true;
                     confirmWindow.close();
                 }
             }
         }
+        std::cout << __LINE__ << std::endl;
 
+        // If  do not click the APPROVE or CANCEL button
         confirmWindow.clear(sf::Color(240, 240, 240));
 
         sf::Text title("Confirm " + formTitle, font, 22);
