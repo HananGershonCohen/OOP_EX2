@@ -17,7 +17,6 @@ void BookingForm::openConfirmationWindow() {
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
 
-    /* to exit from loop */
     sf::Text title("Confirm " + formTitle, font, 22);
     title.setFillColor(sf::Color::Black);
     title.setStyle(sf::Text::Bold);
@@ -32,27 +31,9 @@ void BookingForm::openConfirmationWindow() {
     details.setFillColor(sf::Color::Black);
     details.setPosition(50, 80); 
 
-      // ✅ Approve Button
     Butten ApproveButton ("APPROVE", sf::Vector2f(120, 40), sf::Vector2f(100, 300), sf::Color(50, 150, 50), sf::Color::White);
     Butten CancelButton("CANCEL", sf::Vector2f(120, 40), sf::Vector2f(280, 300), sf::Color(180, 0, 0), sf::Color::White);
 
-    sf::RectangleShape approveButton(sf::Vector2f(120, 40));
-    approveButton.setPosition(100, 300);
-    approveButton.setFillColor(sf::Color(50, 150, 50));
-
-    sf::Text approveText("APPROVE", font, 18);
-    approveText.setFillColor(sf::Color::White);
-    approveText.setPosition(118, 310);
-
-    // ✅ Cancel Button
-    sf::RectangleShape cancelButton(sf::Vector2f(120, 40));
-    cancelButton.setPosition(280, 300);
-    cancelButton.setFillColor(sf::Color(180, 0, 0));
-
-    sf::Text cancelText("CANCEL", font, 18);
-    cancelText.setFillColor(sf::Color::White);
-    cancelText.setPosition(305, 310);
-    /* until here. */
 
     bool approved = false;
 
@@ -64,32 +45,30 @@ void BookingForm::openConfirmationWindow() {
 
             sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
 
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (mousePos.x >= 280 && mousePos.x <= 400 && mousePos.y >= 300 && mousePos.y <= 345) // press "CANCEL" 
+            if (event.type == sf::Event::MouseButtonPressed) 
+            {
+                sf::Vector2f mousePos = confirmWindow.mapPixelToCoords(sf::Mouse::getPosition(confirmWindow));
+
+                if (CancelButton.isClicked(mousePos)) // press "CANCEL" 
                 {
-                    std::cout << __LINE__ << std::endl;
                     confirmWindow.close();
                 }
-                if (mousePos.x >= 100 && mousePos.x <= 220 && mousePos.y >= 300 && mousePos.y <= 345) // press "APPROVE" 
+
+                if (ApproveButton.isClicked(mousePos)) // press "APPROVE" 
                 {
-                    std::cout << __LINE__ << std::endl;
                     std::cout << formTitle << " Confirmed! Returning to main menu." << std::endl;
                     approved = true;
                     confirmWindow.close();
                 }
             }
         }
-        std::cout << __LINE__ << std::endl;
 
         // If  do not click the APPROVE or CANCEL button
         confirmWindow.clear(sf::Color(240, 240, 240));
 
         confirmWindow.draw(title);
         confirmWindow.draw(details);    
-        //confirmWindow.draw(approveButton);
-        //confirmWindow.draw(approveText);       
-        //confirmWindow.draw(cancelButton);
-        //confirmWindow.draw(cancelText);
+
         ApproveButton.draw(confirmWindow);
         CancelButton.draw(confirmWindow);
 

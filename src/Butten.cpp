@@ -30,3 +30,8 @@ void Butten::centerText()
 	m_text.setPosition(m_position.x + m_sizeShape.x / 2.0f,
 		m_position.y + m_sizeShape.y / 2.0f);
 }
+
+bool Butten::isClicked(sf::Vector2f& mousePos)
+{
+	return m_shape.getGlobalBounds().contains(mousePos);
+}
