@@ -16,6 +16,26 @@ void BookingForm::openConfirmationWindow() {
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
 
+    /* to exit from loop */
+      // ✅ Approve Button
+    sf::RectangleShape approveButton(sf::Vector2f(120, 40));
+    approveButton.setPosition(100, 300);
+    approveButton.setFillColor(sf::Color(50, 150, 50));
+
+    sf::Text approveText("APPROVE", font, 18);
+    approveText.setFillColor(sf::Color::White);
+    approveText.setPosition(118, 310);
+
+    // ✅ Cancel Button
+    sf::RectangleShape cancelButton(sf::Vector2f(120, 40));
+    cancelButton.setPosition(280, 300);
+    cancelButton.setFillColor(sf::Color(180, 0, 0));
+
+    sf::Text cancelText("CANCEL", font, 18);
+    cancelText.setFillColor(sf::Color::White);
+    cancelText.setPosition(305, 310);
+    /* until here. */
+
     bool approved = false;
 
     while (confirmWindow.isOpen()) {
@@ -62,26 +82,18 @@ void BookingForm::openConfirmationWindow() {
         details.setPosition(50, 80);
         confirmWindow.draw(details);
 
-        // ✅ Approve Button
-        sf::RectangleShape approveButton(sf::Vector2f(120, 40));
-        approveButton.setPosition(100, 300);
-        approveButton.setFillColor(sf::Color(50, 150, 50));
+      
+      
         confirmWindow.draw(approveButton);
 
-        sf::Text approveText("APPROVE", font, 18);
-        approveText.setFillColor(sf::Color::White);
-        approveText.setPosition(118, 310);
+       
         confirmWindow.draw(approveText);
 
-        // ✅ Cancel Button
-        sf::RectangleShape cancelButton(sf::Vector2f(120, 40));
-        cancelButton.setPosition(280, 300);
-        cancelButton.setFillColor(sf::Color(180, 0, 0));
+    
+        
         confirmWindow.draw(cancelButton);
 
-        sf::Text cancelText("CANCEL", font, 18);
-        cancelText.setFillColor(sf::Color::White);
-        cancelText.setPosition(305, 310);
+       
         confirmWindow.draw(cancelText);
 
         confirmWindow.display();
