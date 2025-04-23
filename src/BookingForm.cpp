@@ -2,6 +2,7 @@
 #include "DialogueManager.h"
 #include <iostream>
 #include <ctime>  // For getting current date
+#include "Butten.h"
 
 BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :window(win), formManager(manager) 
 {
@@ -17,7 +18,24 @@ void BookingForm::openConfirmationWindow() {
     font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
 
     /* to exit from loop */
+    sf::Text title("Confirm " + formTitle, font, 22);
+    title.setFillColor(sf::Color::Black);
+    title.setStyle(sf::Text::Bold);
+    title.setPosition(130, 20);
+
+    std::string bookingInfo;
+    for (size_t i = 0; i < fieldLabels.size(); ++i) {
+        bookingInfo += fieldLabels[i] + " " + userInput[i] + "\n";
+    }
+
+    sf::Text details(bookingInfo, font, 18);
+    details.setFillColor(sf::Color::Black);
+    details.setPosition(50, 80); 
+
       // ✅ Approve Button
+    Butten ApproveButton ("APPROVE", sf::Vector2f(120, 40), sf::Vector2f(100, 300), sf::Color(50, 150, 50), sf::Color::White);
+    Butten CancelButton("CANCEL", sf::Vector2f(120, 40), sf::Vector2f(280, 300), sf::Color(180, 0, 0), sf::Color::White);
+
     sf::RectangleShape approveButton(sf::Vector2f(120, 40));
     approveButton.setPosition(100, 300);
     approveButton.setFillColor(sf::Color(50, 150, 50));
@@ -66,35 +84,14 @@ void BookingForm::openConfirmationWindow() {
         // If  do not click the APPROVE or CANCEL button
         confirmWindow.clear(sf::Color(240, 240, 240));
 
-        sf::Text title("Confirm " + formTitle, font, 22);
-        title.setFillColor(sf::Color::Black);
-        title.setStyle(sf::Text::Bold);
-        title.setPosition(130, 20);
         confirmWindow.draw(title);
-
-        std::string bookingInfo;
-        for (size_t i = 0; i < fieldLabels.size(); ++i) {
-            bookingInfo += fieldLabels[i] + " " + userInput[i] + "\n";
-        }
-
-        sf::Text details(bookingInfo, font, 18);
-        details.setFillColor(sf::Color::Black);
-        details.setPosition(50, 80);
-        confirmWindow.draw(details);
-
-      
-      
-        confirmWindow.draw(approveButton);
-
-       
-        confirmWindow.draw(approveText);
-
-    
-        
-        confirmWindow.draw(cancelButton);
-
-       
-        confirmWindow.draw(cancelText);
+        confirmWindow.draw(details);    
+        //confirmWindow.draw(approveButton);
+        //confirmWindow.draw(approveText);       
+        //confirmWindow.draw(cancelButton);
+        //confirmWindow.draw(cancelText);
+        ApproveButton.draw(confirmWindow);
+        CancelButton.draw(confirmWindow);
 
         confirmWindow.display();
     }
