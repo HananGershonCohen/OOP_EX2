@@ -2,7 +2,6 @@
 #include "DialogueManager.h"
 #include <iostream>
 #include <ctime>  // For getting current date
-#include "Butten.h"
 
 BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :window(win), formManager(manager) 
 {
@@ -37,9 +36,11 @@ void BookingForm::openConfirmationWindow() {
 
     bool approved = false;
 
-    while (confirmWindow.isOpen()) {
+    while (confirmWindow.isOpen())
+    {
         sf::Event event;
-        while (confirmWindow.pollEvent(event)) {
+        while (confirmWindow.pollEvent(event))
+        {
             if (event.type == sf::Event::Closed)
                 confirmWindow.close();
 

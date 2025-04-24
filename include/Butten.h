@@ -4,7 +4,7 @@
 class Butten
 {
 public:
-	Butten(std::string str, sf::Vector2f sizeShape, sf::Vector2f position, sf::Color shapeColor, sf::Color textColor);
+	Butten(std::string str, sf::Vector2f sizeShape, sf::Vector2f position, sf::Color shapeColor, sf::Color textColor = sf::Color::White);
 	void draw(sf::RenderWindow&);
 	bool isClicked(sf::Vector2f&);
 

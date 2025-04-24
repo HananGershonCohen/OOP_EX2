@@ -46,7 +46,8 @@ void FlightBookingForm::render(sf::RenderWindow& window) {
 
     // ✅ Loop through form fields and render
     int yOffset = 60;
-    for (std::size_t i = 0; i < fieldLabels.size(); ++i) {
+    for (std::size_t i = 0; i < fieldLabels.size(); ++i)
+    {
         sf::Text label(fieldLabels[i], font, 18);
         label.setFillColor(sf::Color(60, 60, 60));
         label.setPosition(20, yOffset);
@@ -91,28 +92,15 @@ void FlightBookingForm::render(sf::RenderWindow& window) {
         timeButtonX += 110;  // ✅ Increased spacing between buttons
     }
 
+    //     Butten ApproveButton ("APPROVE", sf::Vector2f(120, 40), sf::Vector2f(100, 300), sf::Color(50, 150, 50), sf::Color::White);
 
-    // ✅ "Done" Button
-    sf::RectangleShape submitButton(sf::Vector2f(140, 40));
-    submitButton.setPosition(20, 550);
-    submitButton.setFillColor(sf::Color(50, 150, 50));  // ✅ Green color
-    window.draw(submitButton);
+    Butten submitButton("DONE", sf::Vector2f(140, 40), sf::Vector2f(20, 550), sf::Color(50, 150, 50));
+    Butten cancelButton("CANCEL", sf::Vector2f(140, 40), sf::Vector2f(200, 550), sf::Color(180, 0, 0));
+  
+    submitButton.draw(window);
+    cancelButton.draw(window);
 
-    sf::Text submitText("DONE", font, 20);
-    submitText.setFillColor(sf::Color::White);
-    submitText.setPosition(50, 560);
-    window.draw(submitText);
-
-    // ✅ "Cancel" Button
-    sf::RectangleShape cancelButton(sf::Vector2f(140, 40));
-    cancelButton.setPosition(200, 550);
-    cancelButton.setFillColor(sf::Color(180, 0, 0));  // ✅ Red color
-    window.draw(cancelButton);
-
-    sf::Text cancelText("CANCEL", font, 20);
-    cancelText.setFillColor(sf::Color::White);
-    cancelText.setPosition(230, 560);
-    window.draw(cancelText);
+   
 
 }
 

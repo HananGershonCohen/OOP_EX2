@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 #include <array>
+#include "Butten.h"
+
 class DialogueManager;
 
 struct PersonalInfo {
