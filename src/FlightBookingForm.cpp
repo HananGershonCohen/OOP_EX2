@@ -74,7 +74,7 @@ void FlightBookingForm::render(sf::RenderWindow& window) {
     }
 
     // ✅ Time Selection Buttons
-    //   
+      
     float timeButtonX = 10;
     for (std::size_t i = 0; i < timeSelection.size(); ++i) {
         sf::RectangleShape timeButton(sf::Vector2f(100, 30));
@@ -91,6 +91,7 @@ void FlightBookingForm::render(sf::RenderWindow& window) {
 
         timeButtonX += 110;  // ✅ Increased spacing between buttons
     }
+    
 
     //     Butten ApproveButton ("APPROVE", sf::Vector2f(120, 40), sf::Vector2f(100, 300), sf::Color(50, 150, 50), sf::Color::White);
 
@@ -105,7 +106,8 @@ void FlightBookingForm::render(sf::RenderWindow& window) {
 }
 
 
-void FlightBookingForm::handleInput(sf::Event event) {
+void FlightBookingForm::handleInput(sf::Event event)
+{
     if (event.type == sf::Event::TextEntered) {
         if (event.text.unicode == '\b' && !userInput[activeField].empty()) { 
             userInput[activeField].pop_back();  // ✅ Handle Backspace
