@@ -1,11 +1,7 @@
 #include "Name.h"
 
+Name::Name(std::string& name) :Validator(name){}
 
-Name::Name(std::string& name)
-	:Validator(name)
-{
-}
-//------------------------------
 bool Name::isValid() const
 {
 	if (m_validator.empty())
