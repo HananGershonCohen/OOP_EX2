@@ -2,22 +2,14 @@
 #include "Engine.h"
 #include <SFML/Graphics.hpp>
 #include "Field.h"
-#include "Date.h"
+#include "Id.h"
+#include "Email.h"
+#include "Name.h"
+#include "Address.h"
+
 int main() {
 
-  /*  Date myDate;
-    if (myDate.isValid())
-    {
-        std::cout << myDate.getValue() << "GOOD" ;
-    }*/
-    Date myDate;
-    Field<Date> myFDate(myDate);
-    if (myFDate.isValid())
-    {
-        std::cout << "is Valid" << myDate.getValue();
 
-
-    }
 
     Engine engine;  //  Create the Engine instance
     engine.run();   //  Start the loop inside Engine

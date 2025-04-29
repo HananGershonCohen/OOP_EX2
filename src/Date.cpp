@@ -6,7 +6,7 @@
 
 Date::Date(std::string date) :Validator<std::string>(date) {}
 
-bool Date::isValid()
+bool Date::isValid() const
 {
     const std::string& date = m_validator;
 
@@ -27,11 +27,6 @@ bool Date::isValid()
     }
 
     return true;
-}
-
-std::string Date::getValue()
-{
-    return m_validator;
 }
 
 
