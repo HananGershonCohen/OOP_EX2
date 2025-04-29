@@ -5,8 +5,15 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <memory>
 #include "Butten.h"
-
+#include "BaseField.h"
+#include "Field.h"
+#include "Id.h"
+#include "Email.h"
+#include "Name.h"
+#include "Date.h"
+#include "Address.h"
 class DialogueManager;
 
 struct PersonalInfo {
@@ -18,8 +25,13 @@ struct PersonalInfo {
 
 class BookingForm {
 protected:
+    std::vector<std::unique_ptr<BaseField>> m_fieldVec;
+    virtual void initFieldVec() {};
+    void checkValidate();
+
     std::vector<std::string> fieldLabels;
     std::vector<std::string> userInput;
+
     std::size_t activeField = 0;
     sf::Clock cursorTimer;
     bool showCursor = true;

@@ -9,7 +9,21 @@ BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :windo
     userInput.resize(fieldLabels.size(), "");  // Initialize input fields
 }
 
-void BookingForm::openConfirmationWindow() {
+
+void BookingForm::checkValidate()
+{
+    for (int i = 0; i < m_fieldVec.size(); i++)
+    {
+        if (!m_fieldVec[i]->isValid() && !m_fieldVec.empty())
+        {
+            std::cout << "the value m_fieldVec[" << i << "] is Not valid" << std::endl;
+        }
+    }
+}
+
+void BookingForm::openConfirmationWindow()
+{
+
     const std::string& formTitle = getFormType();
     sf::RenderWindow confirmWindow(sf::VideoMode(500, 600), "Confirm " + formTitle);
 
@@ -25,6 +39,8 @@ void BookingForm::openConfirmationWindow() {
     for (size_t i = 0; i < fieldLabels.size(); ++i) {
         bookingInfo += fieldLabels[i] + " " + userInput[i] + "\n";
     }
+
+    checkValidate(); // <---------<-----<<<<
 
     sf::Text details(bookingInfo, font, 18);
     details.setFillColor(sf::Color::Black);

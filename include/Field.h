@@ -1,10 +1,11 @@
 #pragma once
+#include "BaseField.h"
 
 template <typename T>
-class Field
+class Field :public BaseField 
 {
 public:
-	Field(T& val) :m_value(val) {};
+	Field(const T& val) :m_value(val) {};
 
 	bool isValid() const
 	{

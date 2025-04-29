@@ -12,6 +12,8 @@ private:
     void setDefaultValues() override;
     std::array<std::string, 4> roomTypeSelection = {"Single Room","Double Room","Family Room","Presidential Suite"};
 	int selectedRoomType = 0;
+    virtual void initFieldVec();
+   
 
 };
 

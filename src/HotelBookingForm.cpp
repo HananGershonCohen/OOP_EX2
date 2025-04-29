@@ -25,6 +25,23 @@ void HotelBookingForm::setDefaultValues() {
     userInput[8]="Single Room";
 }
 
+void HotelBookingForm::initFieldVec()
+{
+    m_fieldVec.resize(7);
+    m_fieldVec[0] = std::make_unique<Field<Name>>(Name(userInput[0]));
+    int num = 0;
+    if (!userInput[1].empty()) num = std::stoi(userInput[1]); else num = -1; 
+    m_fieldVec[1] = std::make_unique<Field<Id>>(Id(num));
+    m_fieldVec[2] = std::make_unique<Field<Name>>(Name(userInput[2]));
+    m_fieldVec[3] = std::make_unique<Field<Name>>(Name(userInput[3]));
+    m_fieldVec[4] = std::make_unique<Field<Name>>(Name(userInput[4]));
+    m_fieldVec[5] = std::make_unique<Field<Date>>(Date(userInput[5]));
+    m_fieldVec[6] = std::make_unique<Field<Date>>(Date(userInput[6]));
+    // m_fieldVec[7] = std::make_unique<Field<Name>>(Name(userInput[7]));
+    // m_fieldVec[8] = std::make_unique<Field<Name>>(Name(userInput[8]));
+}
+
+
 std::string HotelBookingForm::getFormType() const {
     return "Hotel Booking";
 }
@@ -163,6 +180,7 @@ void HotelBookingForm::handleInput(sf::Event event) {
         // ✅ Handle "Done" Button Click
         if (mousePos.x >= 20 && mousePos.x <= 160 && mousePos.y >= 570 && mousePos.y <= 610) {
             std::cout << "Flight Booking Confirmed!\n";
+            initFieldVec();
             openConfirmationWindow();  // ✅ Open confirmation
             return;
         }
