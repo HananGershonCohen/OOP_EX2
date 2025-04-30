@@ -27,7 +27,7 @@ void HotelBookingForm::setDefaultValues() {
 
 void HotelBookingForm::initFieldVec()
 {
-    m_fieldVec.resize(7);
+    m_fieldVec.resize(9);
     m_fieldVec[0] = std::make_unique<Field<Name>>(Name(userInput[0]));
     int num = 0;
     if (!userInput[1].empty()) num = std::stoi(userInput[1]); else num = -1; 
@@ -37,8 +37,13 @@ void HotelBookingForm::initFieldVec()
     m_fieldVec[4] = std::make_unique<Field<Name>>(Name(userInput[4]));
     m_fieldVec[5] = std::make_unique<Field<Date>>(Date(userInput[5]));
     m_fieldVec[6] = std::make_unique<Field<Date>>(Date(userInput[6]));
-    // m_fieldVec[7] = std::make_unique<Field<Name>>(Name(userInput[7]));
-    // m_fieldVec[8] = std::make_unique<Field<Name>>(Name(userInput[8]));
+  
+    if (!userInput[7].empty()) num = std::stoi(userInput[7]); else num = -1;
+     m_fieldVec[7] = std::make_unique<Field<NumGuests>>(NumGuests(num));
+     
+     std::vector<std::string >Vecstr = getArrayChoice();
+     std::pair<std::string, std::vector<std::string>> pair(userInput[8], Vecstr);
+     m_fieldVec[8] = std::make_unique<Field<ChoiceHotel>>(ChoiceHotel(pair));
 }
 
 
@@ -164,12 +169,15 @@ void HotelBookingForm::handleInput(sf::Event event) {
 
         // ✅ Handle Room Type Button Click          
         float roomButtonX = 10;
-                for (int i = 0; i < roomTypeSelection.size(); ++i) {
+        for (int i = 0; i < roomTypeSelection.size(); ++i)
+        {
+            std::cout << __LINE__ << std::endl;
             sf::FloatRect timeButtonBounds(roomButtonX, yOffset, 150, 30);
-            if (timeButtonBounds.contains(mousePos)) {
-				selectedRoomType = i;
+            if (timeButtonBounds.contains(mousePos))
+            {
+                selectedRoomType = i;
                 //Update the "Room Type" input box
-                userInput[8] = roomTypeSelection[i];             
+                userInput[8] = roomTypeSelection[i];
 
                 return;
             }
@@ -193,3 +201,9 @@ void HotelBookingForm::handleInput(sf::Event event) {
         }
     }
 }
+
+std::vector<std::string> HotelBookingForm::getArrayChoice()
+{
+    return roomTypeSelection;
+}
+

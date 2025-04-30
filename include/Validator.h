@@ -4,7 +4,7 @@ template <typename T>
 class Validator
 {
 public:
-	Validator(T& val) : m_validator(val) {};
+	Validator( T& val) : m_validator(val) {};
 	virtual ~Validator() = default;
 	virtual bool isValid() const = 0;
 

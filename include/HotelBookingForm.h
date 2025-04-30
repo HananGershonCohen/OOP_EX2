@@ -8,9 +8,11 @@ public:
     std::string getFormType() const override;
     void render(sf::RenderWindow& window) override;
     void handleInput(sf::Event event) override;
+    std::vector<std::string> getArrayChoice();
+
 private:
     void setDefaultValues() override;
-    std::array<std::string, 4> roomTypeSelection = {"Single Room","Double Room","Family Room","Presidential Suite"};
+    std::vector<std::string> roomTypeSelection = {"Single Room","Double Room","Family Room","Presidential Suite"};
 	int selectedRoomType = 0;
     virtual void initFieldVec();
    

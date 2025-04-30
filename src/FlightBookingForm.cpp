@@ -144,14 +144,25 @@ void FlightBookingForm::handleInput(sf::Event event)
         // ✅ Handle Time Selection Button Click          
         float timeButtonX = 10;
                
-        for (int i = 0; i < 5; ++i) {           
+        for (int i = 0; i < timeSelection.size(); ++i)
+        {
             sf::FloatRect timeButtonBounds(timeButtonX, yOffset, 100, 30);
             if (timeButtonBounds.contains(mousePos)) {                
                 timeSelection[i].second = !timeSelection[i].second;
                 //Update the "Preferred Time" input box
                 userInput[7] = "";
-                for (int i = 0; i < 5; ++i) {
-                    if (timeSelection[i].second) {
+
+                // HANAN
+               /* 
+                if (timeSelection[4].second)
+                {
+                    for (int i = 0; i < timeSelection.size() - 1; ++i)
+                        timeSelection[i].second = false;
+                }*/
+
+                for (int i = 0; i < timeSelection.size(); ++i) {
+                    if (timeSelection[i].second) 
+                    {
                         if (!userInput[7].empty()) userInput[7] += "| ";  // ✅ Separate multiple selections
                         userInput[7] += timeSelection[i].first;
                     }

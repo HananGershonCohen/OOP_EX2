@@ -1,6 +1,7 @@
 ﻿#ifndef BOOKINGFORM_H
 #define BOOKINGFORM_H
 
+#include <utility>
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
@@ -14,6 +15,9 @@
 #include "Name.h"
 #include "Date.h"
 #include "Address.h"
+#include "NumGuests.h"
+#include "ChoiceHotel.h"
+
 class DialogueManager;
 
 struct PersonalInfo {
