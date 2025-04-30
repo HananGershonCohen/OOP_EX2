@@ -3,9 +3,9 @@
 #include <cctype>
 #include "Validator.h"
 
-class Id : public Validator<int>
+class NumGuests : public Validator<int>
 {
 public:
-	Id(int& id);
+	NumGuests(int&);
 	bool isValid() const;
 };
