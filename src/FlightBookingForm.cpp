@@ -3,6 +3,8 @@
 #include <iostream>
 #include <ctime>  // For getting current date
 
+
+
 FlightBookingForm::FlightBookingForm(sf::RenderWindow& win, DialogueManager* manager)
     : BookingForm(win,manager) {  // ✅ Calls base constructor
     fieldLabels.insert(fieldLabels.end(), { "Departure Airport:", "Arrival Airport:",
@@ -193,8 +195,7 @@ void FlightBookingForm::handleInput(sf::Event event)
 
 }
 
-
-
-
-
-
+std::vector<std::pair<std::string, bool>> FlightBookingForm::getVecTime()
+{
+    return timeSelection;
+}

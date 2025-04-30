@@ -4,6 +4,7 @@ ChoiceHotel::ChoiceHotel(std::pair<std::string, std::vector<std::string>> pair) 
 
 bool ChoiceHotel::isValid() const
 {
+    
     std::pair<std::string, std::vector<std::string>> pair = m_validator;
     std::string choice = pair.first;
     std::vector<std::string> choiceVec = pair.second;

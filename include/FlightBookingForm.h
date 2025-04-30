@@ -4,17 +4,20 @@
 #include "BookingForm.h"
 #include <SFML/Graphics.hpp>
 
-class FlightBookingForm : public BookingForm {
+class FlightBookingForm : public BookingForm
+{
 private:    
     void setDefaultValues() override;
     
-    std::array<std::pair<std::string, bool>, 5> timeSelection = {
+    std::vector<std::pair<std::string, bool>> timeSelection = {
         std::make_pair("Morning", false),
         std::make_pair("Noon", false),
         std::make_pair("Evening", false),
         std::make_pair("Night", false),
         std::make_pair("Don't Care", true)  // ✅ Default selection
     };
+
+    std::vector<std::pair<std::string, bool>> getVecTime();
 
 public:
     FlightBookingForm(sf::RenderWindow& win, DialogueManager* manager);  // ✅ Updated constructor

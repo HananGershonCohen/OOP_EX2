@@ -17,6 +17,7 @@
 #include "Address.h"
 #include "NumGuests.h"
 #include "ChoiceHotel.h"
+#include "ChoiceFlight.h"
 
 class DialogueManager;
 
