@@ -22,6 +22,9 @@ bool ChoiceFlight::isValid() const
             word += c;
         else
         {
+            if (word == "Don't")
+                wordsVec.push_back("Don't Care");
+            else
             wordsVec.push_back(word);
             word = "";
         }
@@ -30,14 +33,16 @@ bool ChoiceFlight::isValid() const
     if (choice == "Don't Care")
         return true;
 
-    
+
     for (const std::string& word : wordsVec)
     {
-        if (std::find(choiceVec.begin(), choiceVec.end(), word) == choiceVec.end())
+        std::cout << word << std::endl;
+        if (word == /*choiceVec.back()*/  "Don't Care" )  // אם המילה לא שווה למילה האחרונה ב-choiceVec
         {
-            return false;
+            return false;  // אם כן, מחזירים false
         }
     }
+
 
 
     return true;

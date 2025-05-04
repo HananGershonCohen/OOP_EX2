@@ -4,6 +4,7 @@
 #include "Validator.h"
 #include "vector"
 #include <utility>
+#include <iostream>
 
 class ChoiceFlight : public Validator< std::pair<std::string, std::vector< std::pair<std::string , bool> > > >
 {
