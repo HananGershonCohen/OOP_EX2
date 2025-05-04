@@ -10,4 +10,5 @@ class ChoiceHotel : public Validator< std::pair<std::string, std::vector<std::st
 public:
 	ChoiceHotel(std::pair<std::string, std::vector<std::string>>);
 	virtual bool isValid() const;
+	std::string getRoomType() const;
 };

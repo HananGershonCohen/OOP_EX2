@@ -14,7 +14,8 @@ private:
     void setDefaultValues() override;
     std::vector<std::string> roomTypeSelection = {"Single Room","Double Room","Family Room","Presidential Suite"};
 	int selectedRoomType = 0;
-    virtual void initFieldVec();
+    virtual void analyzedVec();
+    const int m_numOfFields = 11;
    
 
 };

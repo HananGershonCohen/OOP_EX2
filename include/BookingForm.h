@@ -18,6 +18,8 @@
 #include "NumGuests.h"
 #include "ChoiceHotel.h"
 #include "ChoiceFlight.h"
+#include "StartEndDate.h"
+#include "RoomGuestMatcher.h"
 
 class DialogueManager;
 
@@ -31,7 +33,7 @@ struct PersonalInfo {
 class BookingForm {
 protected:
     std::vector<std::unique_ptr<BaseField>> m_fieldVec;
-    virtual void initFieldVec() {};
+    virtual void analyzedVec() {};
     void checkValidate();
 
     std::vector<std::string> fieldLabels;
@@ -47,6 +49,7 @@ protected:
 
     virtual void setDefaultValues()=0 ;
     void openConfirmationWindow();
+    int stringToInt(const std::string&);
 
 public:
     BookingForm(sf::RenderWindow& win, DialogueManager* manager);

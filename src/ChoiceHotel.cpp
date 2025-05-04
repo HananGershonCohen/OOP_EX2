@@ -17,3 +17,8 @@ bool ChoiceHotel::isValid() const
 
     return false;
 }
+
+std::string ChoiceHotel::getRoomType() const
+{
+    return m_validator.first;
+}

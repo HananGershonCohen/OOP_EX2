@@ -18,6 +18,8 @@ private:
     };
 
     std::vector<std::pair<std::string, bool>> getVecTime();
+    virtual void analyzedVec() override;
+    const int m_numOfFields = 8;
 
 public:
     FlightBookingForm(sf::RenderWindow& win, DialogueManager* manager);  // ✅ Updated constructor

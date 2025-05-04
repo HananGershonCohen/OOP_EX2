@@ -25,25 +25,29 @@ void HotelBookingForm::setDefaultValues() {
     userInput[8]="Single Room";
 }
 
-void HotelBookingForm::initFieldVec()
-{
-    m_fieldVec.resize(9);
-    m_fieldVec[0] = std::make_unique<Field<Name>>(Name(userInput[0]));
-    int num = 0;
-    if (!userInput[1].empty()) num = std::stoi(userInput[1]); else num = -1; 
-    m_fieldVec[1] = std::make_unique<Field<Id>>(Id(num));
-    m_fieldVec[2] = std::make_unique<Field<Name>>(Name(userInput[2]));
-    m_fieldVec[3] = std::make_unique<Field<Name>>(Name(userInput[3]));
-    m_fieldVec[4] = std::make_unique<Field<Name>>(Name(userInput[4]));
-    m_fieldVec[5] = std::make_unique<Field<Date>>(Date(userInput[5]));
-    m_fieldVec[6] = std::make_unique<Field<Date>>(Date(userInput[6]));
-  
-    if (!userInput[7].empty()) num = std::stoi(userInput[7]); else num = -1;
-     m_fieldVec[7] = std::make_unique<Field<NumGuests>>(NumGuests(num));
-     
-     std::vector<std::string >Vecstr = getArrayChoice();
-     std::pair<std::string, std::vector<std::string>> pair(userInput[8], Vecstr);
-     m_fieldVec[8] = std::make_unique<Field<ChoiceHotel>>(ChoiceHotel(pair));
+void HotelBookingForm::analyzedVec()
+{  
+    m_fieldVec.resize(m_numOfFields); // m_numOfFields = 9;
+    int idValue = stringToInt(userInput[1]);
+
+    m_fieldVec[0] = std::make_unique< Field<Name>>(Name(userInput[0]));
+    m_fieldVec[1] = std::make_unique< Field<Id>>(Id(idValue));
+    m_fieldVec[2] = std::make_unique< Field<Address>>(Address(userInput[2]));
+    m_fieldVec[3] = std::make_unique< Field<Email>>(Email(userInput[3]));
+    m_fieldVec[4] = std::make_unique< Field<Name>>(Name(userInput[4]));
+    m_fieldVec[5] = std::make_unique< Field<Date>>(Date(userInput[5]));
+    m_fieldVec[6] = std::make_unique< Field<Date>>(Date(userInput[6]));
+    int numGus = stringToInt(userInput[7]);
+    m_fieldVec[7] = std::make_unique< Field<NumGuests>>(NumGuests(numGus));
+
+    std::vector<std::string> Vecstr = getArrayChoice();
+    std::pair<std::string, std::vector<std::string>> pair(userInput[8], Vecstr);
+    m_fieldVec[8] = std::make_unique<Field<ChoiceHotel>>(ChoiceHotel(pair));
+
+    std::vector<Date> dateVec = { Date(userInput[5]), Date(userInput[6]) };
+    m_fieldVec[9] = std::make_unique<Field<StartEndDate>>(StartEndDate(dateVec));
+    m_fieldVec[10] = std::make_unique<Field<RoomGuestMatcher>>(RoomGuestMatcher(std::make_pair(ChoiceHotel(pair), NumGuests(numGus))));
+
 }
 
 
@@ -188,7 +192,7 @@ void HotelBookingForm::handleInput(sf::Event event) {
         // ✅ Handle "Done" Button Click
         if (mousePos.x >= 20 && mousePos.x <= 160 && mousePos.y >= 570 && mousePos.y <= 610) {
             std::cout << "Flight Booking Confirmed!\n";
-            initFieldVec();
+            analyzedVec();
             openConfirmationWindow();  // ✅ Open confirmation
             return;
         }

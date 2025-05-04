@@ -14,6 +14,24 @@ FlightBookingForm::FlightBookingForm(sf::RenderWindow& win, DialogueManager* man
     setDefaultValues();
 }
     
+void FlightBookingForm::analyzedVec()
+{
+    m_fieldVec.resize(m_numOfFields);
+    int idValue = stringToInt(userInput[1]);
+
+    m_fieldVec[0] = std::make_unique< Field<Name>>(Name(userInput[0]));
+    m_fieldVec[1] = std::make_unique< Field<Id> >(Id(idValue));
+    m_fieldVec[2] = std::make_unique< Field<Address>>(Address(userInput[2]));
+    m_fieldVec[3] = std::make_unique< Field<Email> >(Email(userInput[3]));
+    m_fieldVec[4] = std::make_unique< Field<Name> >(Name(userInput[4]));
+    m_fieldVec[5] = std::make_unique< Field<Name> >(Name(userInput[5]));
+    m_fieldVec[6] = std::make_unique< Field<Date> >(Date(userInput[6]));
+
+    std::string input = userInput[7];
+
+    std::pair <std::string, std::vector<std::pair<std::string, bool>>> pair = { input, getVecTime() };
+    m_fieldVec[7] = std::make_unique< Field<ChoiceFlight>>(ChoiceFlight(pair));
+}
 
 void FlightBookingForm::setDefaultValues() {
     time_t now = time(0);
@@ -181,6 +199,7 @@ void FlightBookingForm::handleInput(sf::Event event)
         // ✅ Handle "Done" Button Click
         if (mousePos.x >= 20 && mousePos.x <= 160 && mousePos.y >= 550 && mousePos.y <= 590) {
             std::cout << "Flight Booking Confirmed!\n";
+            analyzedVec();
             openConfirmationWindow();  // ✅ Open confirmation
             return;
         }
