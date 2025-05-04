@@ -172,13 +172,6 @@ void FlightBookingForm::handleInput(sf::Event event)
                 //Update the "Preferred Time" input box
                 userInput[7] = "";
 
-                // HANAN
-               /* 
-                if (timeSelection[4].second)
-                {
-                    for (int i = 0; i < timeSelection.size() - 1; ++i)
-                        timeSelection[i].second = false;
-                }*/
 
                 for (int i = 0; i < timeSelection.size(); ++i) {
                     if (timeSelection[i].second) 

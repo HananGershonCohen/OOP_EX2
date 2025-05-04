@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.26)
 
 project (OOP2_EX02)
-set (MY_AUTHORS "")
+set (MY_AUTHORS "Tzvi_Rolnick-Hanan_Gershon_Cohen")
 
 include (cmake/CompilerSettings.cmake)
 

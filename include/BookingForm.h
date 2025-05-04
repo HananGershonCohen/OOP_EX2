@@ -50,12 +50,14 @@ protected:
     virtual void setDefaultValues()=0 ;
     void openConfirmationWindow();
     int stringToInt(const std::string&);
+  
 
 public:
     BookingForm(sf::RenderWindow& win, DialogueManager* manager);
     virtual ~BookingForm() = default;
     virtual std::string getFormType() const = 0;
     virtual void render(sf::RenderWindow& window) = 0;
+   
     virtual void handleInput(sf::Event event) = 0;
 };
 

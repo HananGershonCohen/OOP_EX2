@@ -36,7 +36,6 @@ int BookingForm::stringToInt(const std::string& str)
 
 }
 
-
 void BookingForm::openConfirmationWindow()
 {
     const std::string& formTitle = getFormType();
